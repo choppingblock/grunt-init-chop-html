@@ -8,7 +8,8 @@ You must have [node](http://nodejs.org), [npm](https://npmjs.org), [Grunt](http:
 
 Clone this repository to your `~/.grunt-init` folder as `chop-html`
 
-```git clone https://github.com/choppingblock/grunt-init-chop-html.git ~/.grunt-init/chop-html
+```
+git clone https://github.com/choppingblock/grunt-init-chop-html.git ~/.grunt-init/chop-html
 ```
 
 ## Usage
@@ -17,7 +18,8 @@ Clone this repository to your `~/.grunt-init` folder as `chop-html`
 
 If you have grunt-cli install and grunt-init installed via npm, you can use the command line tool `grunt-init` to scaffold your project with this template. `grunt-init` runs inside a project folder, it does not create the root folder for the project. When you run the `grunt-init` command, you'll be asked a series of questions about the project.
 
-```cd my-project
+```
+cd my-project
 grunt-init chop-html
 npm install
 ```
@@ -26,19 +28,22 @@ npm install
 
 You should be working on the /src folder. 
 
-```grunt build
+```
+grunt build
 ```
 
 For continuously monitoring files
 
-```grunt watch
+```
+grunt watch
 ```
 
 ### For Deployment
 
 The deployed version exists in the /dist folder after running this task
 
-```grunt distribute
+```
+grunt distribute
 ```
 
 ## Features to add
