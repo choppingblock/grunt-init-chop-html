@@ -48,14 +48,19 @@ exports.template = function(grunt, init, done) {
       version: '0.0.0',
       npm_test: 'qunit',
       devDependencies: {
-        'grunt-contrib-jshint': '~0.5.2',
-        'grunt-contrib-qunit': '~0.2.1',
-        'grunt-contrib-concat': '~0.3.0',
-        'grunt-contrib-uglify': '~0.2.0',
-        'grunt-contrib-watch': '~0.4.3',
-        'grunt-contrib-clean': '~0.4.1',
-        'grunt-contrib-compass': '~0.2.0',
-  		'grunt-contrib-copy': '~0.4.1'
+	    "grunt-contrib-jshint": "~0.6.4",
+	    "grunt-contrib-qunit": "~0.2.2",
+	    "grunt-contrib-concat": "~0.3.0",
+	    "grunt-contrib-uglify": "~0.2.4",
+	    "grunt-contrib-watch": "~0.5.3",
+	    "grunt-contrib-clean": "~0.5.0",
+	    "grunt-contrib-compass": "~0.5.0",
+	    "grunt-contrib-copy": "~0.4.1",
+	    "grunt-usemin": "~0.1.12",
+	    "grunt-imageoptim": "~1.2.12",
+	    "grunt-csscss": "~0.6.1",
+	    "load-grunt-tasks": "~0.2.0",
+	    "grunt-contrib-csslint": "~0.1.2"
 
       }
     });

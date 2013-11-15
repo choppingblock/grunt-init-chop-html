@@ -15,11 +15,25 @@ module.exports = function(grunt) {
         dest: 'dist/assets/javascript/app.min.js'
       }
     },
+	clean: {
+	  dist: {
+	    src: ["dist/public/assets/stylesheets", "dist/public/cache"]
+	  }
+	},
+    imageoptim: {
+      files: ['dist/public/assets/images'],
+      options: {
+        jpegMini: false,
+        imageAlpha: false,
+        quitAfter: false
+      }
+    },
 	copy:{
 		dist: {
 			files:[
-				{ expand: true, cwd: "src/assets", src: ['**'], dest: 'dist/assets/'},
-				{ expand: true, src: ['src/*'], dest: 'dist/'}
+				{ expand: true, cwd: "src/public/", src: ['**'], dest: 'dist/public/'},
+				{ expand: true, cwd: "src/", src: ['*'], dest: 'dist/', filter: 'isFile'},
+				{ expand: true, cwd: "src/views/", src: ['**'], dest: 'dist/views/'},							
 			]
 		}
 	},
@@ -32,21 +46,26 @@ module.exports = function(grunt) {
         dest: 'dist/assets/javascript/app.min.js'
       }
     },{% if (compass) { %}
-		compass: {
-			dist: {
-				options: {
-				sassDir: 'dist/assets/sass',
-				cssDir: 'dist/assets/css',
-				environment: 'production'
-			}
-		},
-			dev: {                    // Another target
-				options: {
-					sassDir: 'src/assets/sass',
-					cssDir: 'src/assets/css'
+			compass: {
+				dist: {
+					options: {
+					relativeAssets: true,					
+					outputStyle: 'compressed',				
+					imagesDir: 'dist/public/assets/images', 
+					sassDir: 'dist/public/assets/sass',
+					cssDir: 'dist/public/assets/stylesheets'
+
+					}
+				},
+				dev: {                   
+					options: {
+						relativeAssets: true,	
+						imagesDir: 'src/public/assets/images',									
+						sassDir: 'src/public/assets/sass',
+						cssDir: 'src/public/assets/stylesheets'
+					}
 				}
-			}
-		},
+			},
 
 
 	{% } %}
@@ -78,30 +97,51 @@ module.exports = function(grunt) {
         src: ['test/qunit/**/*.js']
       }
     },
+
+	csscss: {
+	  src: {
+	    src: ['src/public/assets/stylesheets/styles.css']
+	  }
+	},
+	
+	csslint: {
+		
+		src:{
+			options: {
+				"adjoining-classes": false,
+				"box-sizing": false,
+				"box-model": false,
+				"fallback-colors": false
+			},
+			src: ['src/public/assets/stylesheets/styles.css']
+		}
+	},
+	
 	qunit: {
       files: ['test/qunit/**/*.html']
     },
-    watch: {
-		files: 'src/assets/**',
-        tasks: ['jshint:dev', 'compass:dev', 'qunit']		
-  }
+	watch: {
+		script: {
+			files: ['src/public/assets/javascript/**'],
+			tasks: ['jshint:dev']		
+			
+		},
+		css: {
+			files: ['src/public/assets/sass/**', 'src/public/assets/stylesheets/**'],
+			tasks: [ 'compass:dev', 'csscss', 'csslint']					
+		}
+	}
  });
 
-  {% if (compass) { %}
-     grunt.loadNpmTasks('grunt-contrib-compass');
-  {% } %}
-  grunt.loadNpmTasks('grunt-contrib-concat');
-  grunt.loadNpmTasks('grunt-contrib-uglify');
-  grunt.loadNpmTasks('grunt-contrib-jshint');
-  grunt.loadNpmTasks('grunt-contrib-watch');
-  grunt.loadNpmTasks('grunt-contrib-copy');
-  grunt.loadNpmTasks('grunt-contrib-qunit');
-  // Default task.
+
+
+  require('load-grunt-tasks')(grunt);
 
   grunt.registerTask('default', ['jshint', 'concat', 'uglify' , 'compass']);
   grunt.registerTask('build', ['jshint:dev', 'compass:dev', 'qunit']);
-  grunt.registerTask('distribute', ['jshint', 'copy:dist', 'concat', 'uglify', 'compass:dist']);
-  grunt.registerTask('watcher', ['watch:assets']);
+  grunt.registerTask('distribute', ['jshint:dev', 'copy:dist', 'clean', 'concat', 'uglify', 'compass:dist', 'imageoptim', 'usemin']);
+  grunt.registerTask('watcher', ['watch:script', 'watch:css']);
+
 
 
 };
