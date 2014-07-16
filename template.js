@@ -2,7 +2,7 @@
  * grunt-init-chop-html-basic
  * https://choppingblock.com/
  *
- * Copyright (c) 2013 The Chopping Block
+ * Copyright (c) 2014 The Chopping Block
  * Licensed under the MIT license.
  */
 
@@ -27,12 +27,6 @@ exports.template = function(grunt, init, done) {
 	  message: 'Title of project?',
 	  default: "Untitled Project"		
     },
-	{
-      name: 'compass',
-      message: 'Use Compass?',
-      default: 'Y/n',
-      warning: 'Yes: Include Compass task and compass files.'
-    }
   ], function(err, props) {
 	props.compass = /y/i.test(props.compass);
     props.file_name = '<%= pkg.name %>';
@@ -46,21 +40,32 @@ exports.template = function(grunt, init, done) {
     init.writePackageJSON('package.json', {
       name: props.title,
       version: '0.0.0',
-      npm_test: 'qunit',
+      npm_test: 'mocha',
       devDependencies: {
-	    "grunt-contrib-jshint": "~0.6.4",
-	    "grunt-contrib-qunit": "~0.2.2",
-	    "grunt-contrib-concat": "~0.3.0",
-	    "grunt-contrib-uglify": "~0.2.4",
-	    "grunt-contrib-watch": "~0.5.3",
-	    "grunt-contrib-clean": "~0.5.0",
 	    "grunt-contrib-compass": "~0.5.0",
-	    "grunt-contrib-copy": "~0.4.1",
-	    "grunt-usemin": "~0.1.12",
-	    "grunt-imageoptim": "~1.2.12",
 	    "grunt-csscss": "~0.6.1",
-	    "load-grunt-tasks": "~0.2.0",
-	    "grunt-contrib-csslint": "~0.1.2"
+	    "grunt-contrib-csslint": "^0.2",
+	    "grunt-contrib-copy": "~0.5.0",
+	    "grunt-contrib-concat": "~0.3.0",
+	    "grunt-contrib-uglify": "~0.4.0",
+	    "grunt-contrib-sass": "~0.7.3",
+	    "grunt-contrib-jshint": "~0.9.2",
+	    "grunt-contrib-connect": "~0.7.1",
+	    "grunt-contrib-clean": "~0.5.0",
+	    "grunt-contrib-htmlmin": "~0.2.0",
+	    "grunt-bower-install": "~1.4.0",
+	    "grunt-contrib-imagemin": "~0.6.0",
+	    "grunt-contrib-watch": "~0.6.1",
+	    "grunt-usemin": "~2.1.0",
+	    "grunt-mocha": "~0.4.10",
+	    "grunt-modernizr": "~0.5.2",
+	    "grunt-newer": "~0.7.0",
+	    "grunt-svgmin": "~0.4.0",
+	    "grunt-concurrent": "~0.5.0",		
+		
+	    "time-grunt": "~0.3.1",
+	    "jshint-stylish": "~0.1.5",		
+	    "load-grunt-tasks": "~0.4.0"
 
       }
     });
@@ -69,3 +74,5 @@ exports.template = function(grunt, init, done) {
   });
 
 };
+
+

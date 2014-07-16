@@ -1,0 +1,21 @@
+{
+  "name": "<%= props.title %>",
+  "version": "0.0.0",
+  "authors": [
+    "Eric Haseltine <eric@choppingblock.com>"
+  ],
+  "moduleType": [
+    "amd"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+  }
+}

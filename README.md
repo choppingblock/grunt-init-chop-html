@@ -22,6 +22,7 @@ If you have grunt-cli install and grunt-init installed via npm, you can use the 
 cd my-project
 grunt-init chop-html
 npm install
+bower install
 ```
 
 ### While Developing
@@ -48,7 +49,8 @@ grunt distribute
 
 ## Features to add
 * Optional qunit support
-* ImageOptim task to distribute
+* Optional version for jQuery (branch 1 or 2)
+* Modernizer fixes
 
 
 
